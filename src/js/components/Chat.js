@@ -23,9 +23,10 @@ var Chat = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 
+        _this.displayName = "Chat";
         _this.state = {
             userName: _this.props.userName,
-            hiddenClass: _this.props.hiddenClass
+            history: []
         };
         return _this;
     }
@@ -34,16 +35,101 @@ var Chat = function (_React$Component) {
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
             this.setState({
-                userName: nextProps.userName,
-                hiddenClass: nextProps.hiddenClass
+                userName: nextProps.userName
             });
+        }
+    }, {
+        key: "_sendMessage",
+        value: function _sendMessage(event) {
+            var message = {
+                userName: this.state.userName,
+                time: new Date()
+            },
+                history = this.state.history;
+
+            if (event.type === "click" && event.target.previousElementSibling.children[0].value !== "") {
+                message.text = event.target.previousElementSibling.children[0].value;
+                event.target.previousElementSibling.children[0].value = "";
+                history.push(message);
+                this.setState({
+                    history: history
+                });
+            } else if (event.target.value !== "" && event.which === 13) {
+                message.text = event.target.value;
+                event.target.value = "";
+                history.push(message);
+                this.setState({
+                    history: history
+                });
+            }
+        }
+        //Прокрутка к последнему сообщению
+
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            document.getElementsByClassName("message-window")[0].scrollTop = 9000;
         }
     }, {
         key: "render",
         value: function render() {
+            var messages = [],
+                messageClassName = "",
+                key = 0;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.state.history[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var message = _step.value;
+
+                    if (message.userName === this.state.userName) messageClassName = "user-message";else messageClassName = "income-message";
+                    messages.push(React.createElement(
+                        "div",
+                        { className: messageClassName, key: key },
+                        React.createElement("div", { className: "avatar__shadow" }),
+                        React.createElement(
+                            "div",
+                            { className: "avatar" },
+                            React.createElement("i", { className: "fa fa-user" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "message" },
+                            React.createElement(
+                                "div",
+                                { className: "message__text" },
+                                message.text
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "time" },
+                                message.time.toDateString()
+                            )
+                        )
+                    ));
+                    key++;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
             return React.createElement(
                 "div",
-                { className: this.state.hiddenClass },
+                { className: "chat-container chat" },
                 React.createElement(
                     "h2",
                     null,
@@ -57,7 +143,11 @@ var Chat = function (_React$Component) {
                 React.createElement(
                     "div",
                     { className: "message-window" },
-                    React.createElement("div", { className: "message-feed" })
+                    React.createElement(
+                        "div",
+                        { className: "message-feed" },
+                        messages
+                    )
                 ),
                 React.createElement(
                     "div",
@@ -66,11 +156,12 @@ var Chat = function (_React$Component) {
                     React.createElement(
                         "label",
                         null,
-                        React.createElement("input", { type: "text", id: "message-input", placeholder: "Type message. . ." })
+                        React.createElement("input", { type: "text", id: "message-input", placeholder: "Type message. . .",
+                            onKeyDown: this._sendMessage.bind(this) })
                     ),
                     React.createElement(
                         "button",
-                        { type: "button", id: "message-send" },
+                        { type: "button", id: "message-send", onClick: this._sendMessage.bind(this) },
                         React.createElement("img", { src: "img/chat__send.png", alt: "" })
                     )
                 )
@@ -82,3 +173,7 @@ var Chat = function (_React$Component) {
 }(React.Component);
 
 exports.default = Chat;
+
+Chat.PropTypes = {
+    userName: PropTypes.string.isRequired
+};

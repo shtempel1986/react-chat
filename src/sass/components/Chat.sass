@@ -32,6 +32,58 @@
   bottom: 0
   height: auto
 
+.avatar
+  display: inline-block
+  width: 40px
+  height: 40px
+  min-width: 40px
+  background: #fff
+  font-size: 20px
+  color: #333
+  line-height: 40px
+  text-align: center
+  position: relative
+  z-index: 2
+
+.message
+  display: inline-block
+  max-width: 240px
+  min-width: 140px
+  padding: 20px
+  background: #fff
+  color: #333
+  font-size: 15px
+  box-shadow: 0 10px 20px 0 #555
+  position: relative
+  z-index: 1
+
+.income-message, .user-message
+  display: inline-flex
+  margin: 0 24px 26px 24px
+  position: relative
+  .time
+    margin-top: 15px
+    font-size: 11px
+    color: #d0b9b8
+    font-weight: bold
+
+.user-message
+  flex-direction: row-reverse
+  float: right
+  .avatar__shadow
+    right: 0
+  .time
+    float: right
+
+.avatar__shadow
+  display: inline-block
+  position: absolute
+  width: 40px
+  height: 40px
+  top: 0
+  z-index: 0
+  box-shadow: 0 10px 20px 0 #555
+
 .message-sender
   height: 53px
   position: absolute

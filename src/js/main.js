@@ -46,12 +46,7 @@ var App = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(_Login2.default, { onSubmit: this.chatToggleOn.bind(this), hiddenClass: this.state.chatOn ? "hidden" : "chat-container login" }),
-                React.createElement(_Chat2.default, { userName: this.state.userName, hiddenClass: this.state.chatOn ? "chat-container chat" : "hidden" })
-            );
+            if (!this.state.chatOn) return React.createElement(_Login2.default, { onSubmit: this.chatToggleOn.bind(this) });else return React.createElement(_Chat2.default, { userName: this.state.userName });
         }
     }]);
 

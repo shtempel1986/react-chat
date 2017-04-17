@@ -4,15 +4,15 @@
 import Login from "./components/Login";
 import Chat from "./components/Chat"
 
-class App extends React.Component{
-    constructor(props){
+class App extends React.Component {
+    constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             chatOn: false
         };
     }
 
-    chatToggleOn(name){
+    chatToggleOn(name) {
         this.setState({
             chatOn: true,
             userName: name
@@ -20,11 +20,8 @@ class App extends React.Component{
     }
 
     render() {
-        return (
-        <div>
-            <Login onSubmit={this.chatToggleOn.bind(this)} hiddenClass={this.state.chatOn?"hidden":"chat-container login"}/>
-            <Chat userName={this.state.userName} hiddenClass={this.state.chatOn?"chat-container chat":"hidden"}/>
-        </div>)
+        if (!this.state.chatOn) return <Login onSubmit={this.chatToggleOn.bind(this)}/>;
+        else return <Chat userName={this.state.userName}/>
     }
 }
 

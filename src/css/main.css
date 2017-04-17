@@ -2427,6 +2427,67 @@ h1 {
   bottom: 0;
   height: auto; }
 
+.avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: #fff;
+  font-size: 20px;
+  color: #333;
+  line-height: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 2; }
+
+.message {
+  display: inline-block;
+  max-width: 240px;
+  min-width: 140px;
+  padding: 20px;
+  background: #fff;
+  color: #333;
+  font-size: 15px;
+  -webkit-box-shadow: 0 10px 20px 0 #555;
+          box-shadow: 0 10px 20px 0 #555;
+  position: relative;
+  z-index: 1; }
+
+.income-message, .user-message {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 24px 26px 24px;
+  position: relative; }
+  .income-message .time, .user-message .time {
+    margin-top: 15px;
+    font-size: 11px;
+    color: #d0b9b8;
+    font-weight: bold; }
+
+.user-message {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  float: right; }
+  .user-message .avatar__shadow {
+    right: 0; }
+  .user-message .time {
+    float: right; }
+
+.avatar__shadow {
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 0;
+  z-index: 0;
+  -webkit-box-shadow: 0 10px 20px 0 #555;
+          box-shadow: 0 10px 20px 0 #555; }
+
 .message-sender {
   height: 53px;
   position: absolute;

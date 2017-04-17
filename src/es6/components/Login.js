@@ -5,9 +5,6 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.displayName = "Login";
-        this.state= {
-            hiddenClass:this.props.hiddenClass
-        }
     }
 
     formSubmit(e) {
@@ -16,15 +13,10 @@ export default class Login extends React.Component {
         else alert("Пожалуйста введите имя")
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            hiddenClass:nextProps.hiddenClass
-        });
-    }
 
     render() {
         return (
-            <div className={this.state.hiddenClass}>
+            <div className="chat-container login">
                 <h1>Чат</h1>
                 <img src="img/chat-ico.png" alt=""/>
                 <form action="#" id="form-login" onSubmit={this.formSubmit.bind(this)}>

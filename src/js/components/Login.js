@@ -24,9 +24,6 @@ var Login = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
 
         _this.displayName = "Login";
-        _this.state = {
-            hiddenClass: _this.props.hiddenClass
-        };
         return _this;
     }
 
@@ -37,18 +34,11 @@ var Login = function (_React$Component) {
             if (e.target[0].value) this.props.onSubmit(e.target[0].value);else alert("Пожалуйста введите имя");
         }
     }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-            this.setState({
-                hiddenClass: nextProps.hiddenClass
-            });
-        }
-    }, {
         key: "render",
         value: function render() {
             return React.createElement(
                 "div",
-                { className: this.state.hiddenClass },
+                { className: "chat-container login" },
                 React.createElement(
                     "h1",
                     null,
